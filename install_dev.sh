@@ -1,6 +1,30 @@
 #!/usr/bin/env bash
 {
 
+start(){
+
+clear
+echo ""
+echo ""
+echo ""
+echo ""
+echo    " ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
+echo    " ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
+echo    " ⣿				      	      ⣿⣿⡆⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿	       Shell de Instalação	      ⣿⣿⣿⣦⠀⠀⠈⠙⠿⢿⣿⣿⡿⠿⠟⠛⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿        do ambiente de Desenvolvimento      ⣿⣿⣿⣿⠑⢆⠀⠀⠀⠀⠈⠉⠂⠀⢠⣤⣀⡀⠀⠙⣿⡿⠿⢿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿		   Eagle Track		      ⣿⣿⣿⣿⣧⡀⠙⠦⣀⠀⠀⠀⠀⠀⠀⠀⠉⠛⢭⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿ "
+echo    " ⣿ 	    				      ⣿⣿⣿⣿⣿⣷⡀⠀⠀⠑⠢⣀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⢀⣠⣄⣠⣿⣿⣿ "
+echo    " ⣿					      ⣿⣿⣿⣿⣿⣿⣿⡦⡀⠀⠀⠀⠙⢆⠀⠀⠀⠀⠀⠇⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿ 	       Desenvolvida por:	      ⣿⣿⣿⣿⣿⣿⣿⣧⠀⠰⣄⠀⠀⠀⡆⠀⠀⠀⠜⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿ 	   VeCo - volberto@gmail.com	      ⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠹⣧⠀⢠⠃⠀⡠⠊⠀⠀⠠⢂⣼⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿					      ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠈⠐⠁⠀⠈⠀⡀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿      Pressione qq tecla para continuar     ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⣀⣄⣁⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ "
+echo    " ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
+read -n 1
+
+}
+
 remove_progs(){
 	sudo apt update
 	sudo apt -y upgrade 
@@ -268,7 +292,7 @@ msg(){
 
 }
 
-
+start
 remove_progs
 install_pack
 install_PHP
