@@ -65,7 +65,7 @@ install_pack() {
 
 
 	#abrir navegador na pg do GIT(Criar Usuario)
-	google-chrome https://git.eagletrack.com.br/
+	google-chrome https://git.eagletrack.com.br/ &
 
 }
 
@@ -252,14 +252,18 @@ sh_start(){
 	echo 'php artisan serve & ' >> start_dev.sh
 	echo 'cd $HOME/Documentos/workspace/track-frontend/' >> start_dev.sh
 	echo 'npm run serve & ' >> start_dev.sh
-	echo 'sleep 15 ' >> start_dev.sh
-	echo 'google-chrome http://localhost:8080 ' >> start_dev.sh
+	echo 'google-chrome http://localhost:8080 & ' >> start_dev.sh
 	echo 'cd $HOME/Documentos/workspace/ ' >> start_dev.sh
-	echo 'code .' >> start_dev.sh
+	echo 'code . & ' >> start_dev.sh
 	echo 'exit ' >> start_dev.sh
 	sudo chmod +x start_dev.sh
 }
 
+msg(){
+	echo "Para iniciar o Desenvolvimento."
+	echo "Abra o terminal e digite:"
+	echo "./start_dev.sh"
+}
 
 
 }
@@ -280,6 +284,6 @@ php_artisan_storage
 download_frontend
 install_frontend
 sh_start
-
+msg
 
 
