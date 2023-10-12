@@ -127,7 +127,7 @@ git_repositorio() {
 
 	#repositorio backend
 	git clone https://git.eagletrack.com.br/track-web/track-backend.git
-
+ 	git config --global credential.helper cache
 	#repositorio frontend
 	git clone https://git.eagletrack.com.br/track-web/track-frontend.git
 
