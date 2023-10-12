@@ -175,8 +175,13 @@ gera_env(){
 	echo ' APP_URL=http://localhost:8000' >> .env
 	echo ' # Banco ACER' >> .env
 	echo ' DB_CONNECTION=pgsql' >> .env
-	echo ' #DB_HOST=192.168.1.200' >> .env
-	echo ' DB_HOST=168.232.41.43' >> .env
+ 	#pinga o servidor interno 
+	 if ping -c 1 192.168.1.200 &> /dev/null
+	then
+	  echo ' DB_HOST=192.168.1.200' >> .env
+	else
+	  echo ' DB_HOST=168.232.41.43' >> .env
+	fi
 	echo ' DB_PORT=5432' >> .env
 	echo ' DB_DATABASE=eaglelaravel2' >> .env
 	echo ' DB_USERNAME=postgres' >> .env
@@ -263,7 +268,7 @@ download_frontend(){
 
 install_frontend(){
 	echo "Instalar o NODE"
-	sleep 20
+	sleep 10
 	npm i
 
 }
