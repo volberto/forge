@@ -89,7 +89,7 @@ install_pack() {
 
 
 	#abrir navegador na pg do GIT(Criar Usuario)
-	google-chrome https://git.eagletrack.com.br/ &
+	google-chrome "https://git.eagletrack.com.br/" &
 
 }
 
