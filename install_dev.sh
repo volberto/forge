@@ -1,6 +1,31 @@
 #!/usr/bin/env bash
 {
 
+
+dirInstall(){
+	if [ -d $HOME/Documents/ ]; then
+	   docUser=$HOME/Documents
+	elif [ -d $HOME/Documentos/ ]; then
+	    docUser=$HOME/Documentos
+	else
+	    exit 0;
+	fi
+
+	cd $docUser/
+	mkdir Workspace
+	cd Workspace
+	localDir=$(pwd)
+
+	if [ "$docUser/Workspace" != $localDir ]; then
+		zenity --error	 --modal --text="Erro ao criar Pasta Workspace no diretorio do usuario. \nVerifique com o Administrador as permissoes do seu Usuário"
+		kill -9 `ps -A | grep -w gnome-terminal- | grep -v grep | awk '{print $1}'`
+	else
+		dirInstall=$localDir
+	fi
+
+}
+
+
 start(){
 
 clear
@@ -120,10 +145,7 @@ install_PHP() {
 
 git_repositorio() {
 	#Criar a pasta workspace na pasta do <user>/Documents
-	cd $HOME/Documentos/
-	sudo mkdir workspace
-	sudo chmod 777 workspace
-	cd $HOME/Documentos/workspace/
+	cd $dirInstall/
 
 	#repositorio backend
 	git clone https://git.eagletrack.com.br/track-web/track-backend.git
@@ -136,15 +158,9 @@ git_repositorio() {
 
 cria_pasta(){
 	#cria pasta pdf (Requisito ao backend)
-	cd $HOME/Documentos/workspace/track-backend/public/
+	cd $dirInstall/track-backend/public/
 	sudo mkdir pdf
 	sudo chmod 777 pdf
-
-	#cria pasta pdf (Requisito ao frontend)
-	cd $HOME/Documentos/workspace/track-frontend/public/
-	sudo mkdir pdf
-	sudo chmod 777 pdf
-
 }
 
 
@@ -161,7 +177,7 @@ install_COMPOSER() {
 
 #gerar o .env
 gera_env(){
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	
 	if [ -e .env ]
 	then
@@ -220,30 +236,30 @@ gera_env(){
 
 #baixar e instalar o Laravel
 install_LARAVEL_require() {
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	composer global require laravel/installer
 	composer install
 }
 
 install_LARAVEL_passport() {
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	composer require laravel/passport=~8.2
 }
 
 php_artisan_passport() {
 
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	php artisan passport:install --force
 
 
-	if [ -e $HOME/Documentos/workspace/track-backend/storage/oauth-public.key ]
+	if [ -e $dirInstall/track-backend/storage/oauth-public.key ]
 	then
 		echo "Gerando arquivo oauth-public.key "
-		cd $HOME/Documentos/workspace/track-backend/
+		cd $dirInstall/track-backend/
 		php artisan passport:install --force
 	else
 		echo "Gerando arquivo oauth-public.key"
-		cd $HOME/Documentos/workspace/track-backend/
+		cd $dirInstall/track-backend/
 		php artisan passport:install --force
 	fi
 
@@ -251,18 +267,18 @@ php_artisan_passport() {
 }
 
 php_artisan_key() {
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	php artisan key:generate
 }
 
 php_artisan_storage() {
-	cd $HOME/Documentos/workspace/track-backend/
+	cd $dirInstall/track-backend/
 	php artisan storage:link
 }
 
 
 download_frontend(){
-	cd $HOME/Documentos/workspace/track-frontend/
+	cd $dirInstall/track-frontend/
 	npm install --location=global node@^13.13.52
 }
 
@@ -277,12 +293,12 @@ sh_start(){
 	cd $HOME/
 	echo '' > start_dev.sh
 	echo '#!/bin/bash' >> start_dev.sh
-	echo 'cd $HOME/Documentos/workspace/track-backend/' >> start_dev.sh
+	echo 'cd '$dirInstall'/track-backend/' >> start_dev.sh
 	echo 'php artisan serve & ' >> start_dev.sh
-	echo 'cd $HOME/Documentos/workspace/track-frontend/' >> start_dev.sh
+	echo 'cd '$dirInstall'/track-frontend/' >> start_dev.sh
 	echo 'npm run serve & ' >> start_dev.sh
 	echo 'google-chrome http://localhost:8080 & ' >> start_dev.sh
-	echo 'cd $HOME/Documentos/workspace/ ' >> start_dev.sh
+	echo 'cd '$dirInstall'/ ' >> start_dev.sh
 	echo 'code . & ' >> start_dev.sh
 	echo 'exit ' >> start_dev.sh
 	sudo chmod +x start_dev.sh
@@ -297,6 +313,7 @@ msg(){
 
 }
 
+dirInstall
 start
 remove_progs
 install_pack
